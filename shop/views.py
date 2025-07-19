@@ -1,5 +1,6 @@
 from django.shortcuts import render , get_object_or_404
 from shop.models import Product , Category
+from .filters import ProductFilter
 
 # Create your views here.
 def home_view(request):
@@ -15,8 +16,10 @@ def product_view(request , pk):
 def products_view(request):
     item = Product.objects.all()
     category = Category.objects.all()
+    product_filter = ProductFilter(request.GET, queryset=item)
     context = {
         'item':item,
         'category':category,
+        'filter': product_filter,
     }
     return render(request , 'products.html', context)

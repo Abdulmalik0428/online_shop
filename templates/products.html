@@ -14,17 +14,15 @@
 {% block content %}
   <section class="category">
     <strong>Category:</strong>
-    <select>
-      <option>All</option>
-      <option>Electronics</option>
-      <option>Clothing</option>
-      <option>Books</option>
-    </select>
+      <form method="get">
+          {{ filter.form.category }}
+          <button type="submit">Filter</button>
+      </form>
   </section>
 
 {% if item %}
   <section class="products">
-    {% for item in item %}
+    {% for item in filter.qs %}
     <div class="product">
       <!-- Mahsulot rasmi -->
       <img src="{{ item.image.url }}" alt="{{ item.name }}" style="width:200px;">

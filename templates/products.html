@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Products{% endblock  %}
+  {% block extra_css %}
+    <style>
+    body { font-family: Arial; margin: 0; }
+    header, footer { background: #333; color: white; padding: 1em; text-align: center; }
+    nav a { margin: 0 1em; color: white; text-decoration: none; }
+    .products { display: flex; flex-wrap: wrap; gap: 1em; padding: 1em; }
+    .product { border: 1px solid #ccc; padding: 1em; width: 200px; }
+    .category { margin: 1em; }
+  </style>
+  {% endblock  %}
+
+{% block content %}
+  <section class="category">
+    <strong>Category:</strong>
+    <select>
+      <option>All</option>
+      <option>Electronics</option>
+      <option>Clothing</option>
+      <option>Books</option>
+    </select>
+  </section>
+
+{% if item %}
+  <section class="products">
+    {% for item in item %}
+    <div class="product">
+      <!-- Mahsulot rasmi -->
+      <img src="{{ item.image.url }}" alt="{{ item.name }}" style="width:200px;">
+      <!-- Mahsulot nomi va link -->
+      <h3><a href="{% url 'product' item.pk %}">{{ item.name }}</a></h3>
+      <!-- Narxi -->
+      <p>${{ item.price }}</p>
+    </div>
+    {% endfor %}
+  </section>
+{% endif %}
+
+{% endblock  %}

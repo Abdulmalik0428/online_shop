@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Product{% endblock  %}
+
+    {% block extra_css %}
+    <style>
+        body { font-family: Arial; margin: 0; }
+        header, footer { background: #333; color: white; padding: 1em; text-align: center; }
+        nav a { margin: 0 1em; color: white; text-decoration: none; }
+        .product-detail { padding: 2em; }
+        .product-detail img { width: 200px; }
+    </style>
+    {% endblock %}
+
+{% block content %}
+
+    <section class="product-detail">
+        <h2>{{ item.name }}</h2>
+        <img src="{{ item.image.url }}" alt="{{ item.name }}">
+        <p><strong>Price:</strong> ${{ item.price }}</p>
+        <p><strong>Description:</strong>{{ item.description }}</p>
+        <button>Add to Cart</button>
+    </section>
+{% endblock  %}
+
+
